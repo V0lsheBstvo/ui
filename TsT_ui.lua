@@ -168,10 +168,14 @@ pcall(
 local LibName = tostring(math.random(1, 100)) .. tostring(math.random(1, 50)) .. tostring(math.random(1, 100))
 
 function lu_ui:ToggleUI()
-    if game.CoreGui[LibName].Enabled then
-        game.CoreGui[LibName].Enabled = false
+    local lib = game.CoreGui[LibName]
+    if lib.Enabled then
+        Utility:TweenObject(lib.Main, {Size = UDim2.new(0, 0, 0, 0)}, 0.3)
+        wait(0.3)
+        lib.Enabled = false
     else
-        game.CoreGui[LibName].Enabled = true
+        lib.Enabled = true
+        Utility:TweenObject(lib.Main, {Size = UDim2.new(0, 525, 0, 318)}, 0.3)
     end
 end
 
@@ -296,35 +300,6 @@ function lu_ui.CreateLib(lu_Name, themeList)
     title.TextColor3 = Color3.fromRGB(245, 245, 245)
     title.TextSize = 16.000
     title.TextXAlignment = Enum.TextXAlignment.Left
-
-    local uis = game:GetService("UserInputService")
-    local isMinimized = false
-    local function toggleMinimize()
-        isMinimized = not isMinimized
-        if isMinimized then
-            Utility:TweenObject(Main, {
-                Size = UDim2.new(0, 150, 0, 29),
-                Position = UDim2.new(Main.Position.X.Scale, Main.Position.X.Offset, Main.Position.Y.Scale, Main.Position.Y.Offset)
-            }, 0.2)
-            pages.Visible = false
-            MainSide.Visible = false
-        else
-            Utility:TweenObject(Main, {
-                Size = UDim2.new(0, 525, 0, 318),
-                Position = UDim2.new(Main.Position.X.Scale, Main.Position.X.Offset, Main.Position.Y.Scale, Main.Position.Y.Offset)
-            }, 0.2)
-            pages.Visible = true
-            MainSide.Visible = true
-        end
-    end
-
-    uis.InputBegan:Connect(function(input, gameProcessed)
-        if gameProcessed then return end
-        if input.KeyCode == Enum.KeyCode.RightControl then
-            toggleMinimize()
-        end
-    end)
-
 
     close.Name = "close"
     close.Parent = MainHeader
