@@ -228,6 +228,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
     local coverup = Instance.new("Frame")
     local title = Instance.new("TextLabel")
     local close = Instance.new("ImageButton")
+    local minimize = Instance.new("ImageButton")
     local MainSide = Instance.new("Frame")
     local sideCorner = Instance.new("UICorner")
     local coverup_2 = Instance.new("Frame")
@@ -296,6 +297,37 @@ function lu_ui.CreateLib(lu_Name, themeList)
     title.TextColor3 = Color3.fromRGB(245, 245, 245)
     title.TextSize = 16.000
     title.TextXAlignment = Enum.TextXAlignment.Left
+
+    local isMinimized = false
+    minimize.Name = "minimize"
+    minimize.Parent = MainHeader
+    minimize.BackgroundTransparency = 1.000
+    minimize.Position = UDim2.new(0.899999976, 0, 0.137999997, 0)
+    minimize.Size = UDim2.new(0, 21, 0, 21)
+    minimize.ZIndex = 2
+    minimize.Image = "rbxassetid://3926305904"
+    minimize.ImageRectOffset = Vector2.new(924, 724)
+    minimize.ImageRectSize = Vector2.new(36, 36)
+    minimize.MouseButton1Click:Connect(function()
+        isMinimized = not isMinimized
+        if isMinimized then
+            Utility:TweenObject(Main, {
+                Size = UDim2.new(0, 150, 0, 29),
+                Position = UDim2.new(Main.Position.X.Scale, Main.Position.X.Offset, Main.Position.Y.Scale, Main.Position.Y.Offset)
+            }, 0.2)
+            pages.Visible = false
+            MainSide.Visible = false
+            minimize.ImageRectOffset = Vector2.new(964, 324)
+        else
+            Utility:TweenObject(Main, {
+                Size = UDim2.new(0, 525, 0, 318),
+                Position = UDim2.new(Main.Position.X.Scale, Main.Position.X.Offset, Main.Position.Y.Scale, Main.Position.Y.Offset)
+            }, 0.2)
+            pages.Visible = true
+            MainSide.Visible = true
+            minimize.ImageRectOffset = Vector2.new(924, 724)
+        end
+    end)
 
     close.Name = "close"
     close.Parent = MainHeader
@@ -392,6 +424,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 MainSide.BackgroundColor3 = themeList.Header
                 coverup_2.BackgroundColor3 = themeList.Header
                 coverup.BackgroundColor3 = themeList.Header
+                minimize.ImageColor3 = themeList.TextColor
             end
         end
     )()
