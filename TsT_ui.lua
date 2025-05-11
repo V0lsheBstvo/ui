@@ -3185,8 +3185,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 local UICorner = Instance.new("UICorner")
                 label.Name = "label"
                 label.Parent = sectionInners
-                label.BackgroundColor3 = themeList.SchemeColor
-                label.BackgroundTransparency = 0.5
+                label.BackgroundColor3 = themeList.ElementColor
                 label.BorderSizePixel = 0
                 label.ClipsDescendants = true
                 label.Text = title
