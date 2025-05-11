@@ -3208,16 +3208,9 @@ function lu_ui.CreateLib(lu_Name, themeList)
                     Utility:TweenObject(label, {TextColor3 = Color3.fromRGB(255, 255, 255)}, 0.2)
                 end
 
-                coroutine.wrap(
-                    function()
-                        while wait() do
-                            label.BackgroundColor3 = themeList.SchemeColor
-                            label.TextColor3 = themeList.TextColor
-                        end
-                    end
-                )()
                 updateSectionFrame()
                 UpdateSize()
+                
                 function labelFunctions:UpdateLabel(newText)
                     if label.Text ~= "  " .. newText then
                         label.Text = "  " .. newText
