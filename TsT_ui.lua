@@ -3145,7 +3145,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                             rs.RenderStepped:Connect(
                             function()
                                 setrgbcolor({zigzag(counter), 1, 1})
-                                counter = counter + 0.01
+                                counter = counter + 0.002
                             end
                         )
                     end
@@ -3210,7 +3210,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
 
                 updateSectionFrame()
                 UpdateSize()
-                
+
                 function labelFunctions:UpdateLabel(newText)
                     if label.Text ~= "  " .. newText then
                         label.Text = "  " .. newText
