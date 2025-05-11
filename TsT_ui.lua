@@ -3186,6 +3186,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 label.Name = "label"
                 label.Parent = sectionInners
                 label.BackgroundColor3 = themeList.SchemeColor
+                label.BackgroundTransparency = 0.5
                 label.BorderSizePixel = 0
                 label.ClipsDescendants = true
                 label.Text = title
