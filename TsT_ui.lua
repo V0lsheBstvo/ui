@@ -228,7 +228,6 @@ function lu_ui.CreateLib(lu_Name, themeList)
     local coverup = Instance.new("Frame")
     local title = Instance.new("TextLabel")
     local close = Instance.new("ImageButton")
-    local minimize = Instance.new("ImageButton")
     local MainSide = Instance.new("Frame")
     local sideCorner = Instance.new("UICorner")
     local coverup_2 = Instance.new("Frame")
@@ -298,17 +297,9 @@ function lu_ui.CreateLib(lu_Name, themeList)
     title.TextSize = 16.000
     title.TextXAlignment = Enum.TextXAlignment.Left
 
+    local uis = game:GetService("UserInputService")
     local isMinimized = false
-    minimize.Name = "minimize"
-    minimize.Parent = MainHeader
-    minimize.BackgroundTransparency = 1.000
-    minimize.Position = UDim2.new(0.899999976, 0, 0.137999997, 0)
-    minimize.Size = UDim2.new(0, 21, 0, 21)
-    minimize.ZIndex = 2
-    minimize.Image = "rbxassetid://3926305904"
-    minimize.ImageRectOffset = Vector2.new(924, 724)
-    minimize.ImageRectSize = Vector2.new(36, 36)
-    minimize.MouseButton1Click:Connect(function()
+    local function toggleMinimize()
         isMinimized = not isMinimized
         if isMinimized then
             Utility:TweenObject(Main, {
@@ -317,7 +308,6 @@ function lu_ui.CreateLib(lu_Name, themeList)
             }, 0.2)
             pages.Visible = false
             MainSide.Visible = false
-            minimize.ImageRectOffset = Vector2.new(964, 324)
         else
             Utility:TweenObject(Main, {
                 Size = UDim2.new(0, 525, 0, 318),
@@ -325,9 +315,16 @@ function lu_ui.CreateLib(lu_Name, themeList)
             }, 0.2)
             pages.Visible = true
             MainSide.Visible = true
-            minimize.ImageRectOffset = Vector2.new(924, 724)
+        end
+    end
+
+    uis.InputBegan:Connect(function(input, gameProcessed)
+        if gameProcessed then return end
+        if input.KeyCode == Enum.KeyCode.RightControl then
+            toggleMinimize()
         end
     end)
+
 
     close.Name = "close"
     close.Parent = MainHeader
@@ -424,7 +421,6 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 MainSide.BackgroundColor3 = themeList.Header
                 coverup_2.BackgroundColor3 = themeList.Header
                 coverup.BackgroundColor3 = themeList.Header
-                minimize.ImageColor3 = themeList.TextColor
             end
         end
     )()
