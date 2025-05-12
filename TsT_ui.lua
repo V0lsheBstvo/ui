@@ -417,7 +417,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
 
     local first = true
 
-    function Tabs:AddNewTab(tabName)
+    function Tabs:AddTab(tabName)
         tabName = tabName or "Tab"
         local tabButton = Instance.new("TextButton")
         local UICorner = Instance.new("UICorner")
