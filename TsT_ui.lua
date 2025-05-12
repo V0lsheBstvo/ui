@@ -417,7 +417,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
 
     local first = true
 
-    function Tabs:NewTab(tabName)
+    function Tabs:AddNewTab(tabName)
         tabName = tabName or "Tab"
         local tabButton = Instance.new("TextButton")
         local UICorner = Instance.new("UICorner")
@@ -535,7 +535,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
             end
         )()
 
-        function Sections:NewSection(secName, hidden)
+        function Sections:AddSection(secName, hidden)
             secName = secName or "Section"
             local sectionFunctions = {}
             local modules = {}
@@ -641,7 +641,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
             updateSectionFrame()
             UpdateSize()
             local Elements = {}
-            function Elements:NewButton(bname, tipINf, callback)
+            function Elements:AddButton(bname, tipINf, callback)
                 showLogo = showLogo or true
                 local ButtonFunction = {}
                 tipINf = tipINf or "Tip: Clicking this nothing will happen!"
@@ -883,7 +883,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 return ButtonFunction
             end
 
-            function Elements:NewTextBox(tname, tTip, callback)
+            function Elements:AddTextBox(tname, tTip, callback)
                 tname = tname or "Textbox"
                 tTip = tTip or "Gets a value of Textbox"
                 callback = callback or function()
@@ -1133,7 +1133,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 )()
             end
 
-            function Elements:NewToggle(tname, nTip, callback)
+            function Elements:AddToggle(tname, nTip, callback)
                 local TogFunction = {}
                 tname = tname or "Toggle"
                 nTip = nTip or "Prints Current Toggle State"
@@ -1447,7 +1447,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 return TogFunction
             end
 
-            function Elements:NewSlider(slidInf, slidTip, maxvalue, minvalue, callback)
+            function Elements:AddSlider(slidInf, slidTip, maxvalue, minvalue, callback)
                 slidInf = slidInf or "Slider"
                 slidTip = slidTip or "Slider tip here"
                 maxvalue = maxvalue or 500
@@ -1789,7 +1789,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 )
             end
 
-            function Elements:NewDropdown(dropname, dropinf, list, callback)
+            function Elements:AddDropdown(dropname, dropinf, list, callback)
                 local DropFunction = {}
                 dropname = dropname or "Dropdown"
                 list = list or {}
@@ -2373,7 +2373,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 end
                 return DropFunction
             end
-            function Elements:NewKeybind(keytext, keyinf, first, callback)
+            function Elements:AddKeybind(keytext, keyinf, first, callback)
                 keytext = keytext or "KeybindText"
                 keyinf = keyinf or "KebindInfo"
                 callback = callback or function()
@@ -2627,7 +2627,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 )()
             end
 
-            function Elements:NewColorPicker(colText, colInf, defcolor, callback)
+            function Elements:AddColorPicker(colText, colInf, defcolor, callback)
                 colText = colText or "ColorPicker"
                 callback = callback or function()
                     end
@@ -3183,7 +3183,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 setcolor({h, s, v})
             end
 
-            function Elements:NewLabel(title)
+            function Elements:AddLabel(title)
                 local labelFunctions = {}
                 local label = Instance.new("TextLabel")
                 local UICorner = Instance.new("UICorner")
