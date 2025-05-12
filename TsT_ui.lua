@@ -417,7 +417,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
 
     local first = true
 
-    function Tabs:AddTab(tabName)
+    function Tabs:AddNewTab(tabName)
         tabName = tabName or "Tab"
         local tabButton = Instance.new("TextButton")
         local UICorner = Instance.new("UICorner")
@@ -3189,7 +3189,7 @@ function lu_ui.CreateLib(lu_Name, themeList)
                 local UICorner = Instance.new("UICorner")
                 label.Name = "label"
                 label.Parent = sectionInners
-                label.BackgroundColor3 = themeList.ElementColor
+                -- label.BackgroundColor3 = themeList.ElementColor
                 label.BorderSizePixel = 0
                 label.ClipsDescendants = true
                 label.Text = title
