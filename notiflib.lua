@@ -1,122 +1,215 @@
-local notif = {}
+local TweenService = game:GetService("TweenService");
+local RunService = game:GetService("RunService");
+local TextService = game:GetService("TextService");
 
-function notif:Notification(title, desc, font, font2, visibletime)
-    pcall(
-        function()
-            local screenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
+local Player = game:GetService("Players").LocalPlayer;
 
-            local instances = {
-                ["UICorner_1"] = Instance.new("UICorner"),
-                ["LocalScript_1"] = Instance.new("LocalScript"),
-                ["Frame_2"] = Instance.new("Frame"),
-                ["UICorner_2"] = Instance.new("UICorner"),
-                ["TextLabel_1"] = Instance.new("TextLabel"),
-                ["Frame_1"] = Instance.new("Frame"),
-                ["TextLabel_2"] = Instance.new("TextLabel"),
-                ["LocalScript_2"] = Instance.new("LocalScript"),
-                ["TextButton_1"] = Instance.new("TextButton")
-            }
+local NotifGui = Instance.new("ScreenGui");
+NotifGui.Name = "Notify";
+NotifGui.Parent = RunService:IsStudio() and Player.PlayerGui or game:GetService("CoreGui");
 
-            screenGui.Name = title
-            screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local Container = Instance.new("Frame");
+Container.Name = "Container";
+Container.Position = UDim2.new(0, 20, 0.5, -20);
+Container.Size = UDim2.new(0, 300, 0.5, 0);
+Container.BackgroundTransparency = 1;
+Container.Parent = NotifGui;
 
-            instances.Frame_1.Parent = screenGui
-            instances.Frame_1.Name = "Main"
-
-            instances.Frame_1.BackgroundColor3 = Color3.new(0.0666667, 0.0666667, 0.0666667)
-            instances.Frame_1.BorderSizePixel = 0
-            instances.Frame_1.Position = UDim2.new(1, 0, 0.509, 0)
-            instances.Frame_1.Size = UDim2.new(0, 331, 0, 61)
-
-            instances.Frame_2.Parent = instances.Frame_1
-            instances.Frame_2.BackgroundColor3 = Color3.new(0.0431373, 0.0431373, 0.0431373)
-            instances.Frame_2.Size = UDim2.new(0, 11, 0, 61)
-            instances.Frame_2.Name = "Bar"
-
-            instances.UICorner_1.Parent = instances.Frame_2
-            instances.UICorner_1.CornerRadius = UDim.new(0, 10)
-
-            instances.UICorner_2.Parent = instances.Frame_1
-            instances.UICorner_2.CornerRadius = UDim.new(0, 7)
-
-            instances.TextLabel_1.Parent = instances.Frame_1
-            instances.TextLabel_1.Font = Enum.Font[font]
-            instances.TextLabel_1.Text = title
-            instances.TextLabel_1.TextColor3 = Color3.new(1, 1, 1)
-            instances.TextLabel_1.TextSize = 14
-            instances.TextLabel_1.TextXAlignment = Enum.TextXAlignment.Left
-            instances.TextLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
-            instances.TextLabel_1.BackgroundTransparency = 1
-            instances.TextLabel_1.Position = UDim2.new(0.08849557489156723, 0, 0, 0)
-            instances.TextLabel_1.Size = UDim2.new(0, 201, 0, 28)
-            instances.TextLabel_1.Name = "Title"
-
-            instances.TextLabel_2.Parent = instances.Frame_1
-            instances.TextLabel_2.Font = Enum.Font[font2]
-            instances.TextLabel_2.Text = desc
-            instances.TextLabel_2.TextColor3 = Color3.new(1, 1, 1)
-            instances.TextLabel_2.TextSize = 13
-            instances.TextLabel_2.TextTruncate = Enum.TextTruncate.AtEnd
-            instances.TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
-            instances.TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
-            instances.TextLabel_2.BackgroundTransparency = 1
-            instances.TextLabel_2.Position = UDim2.new(0.08645028620958328, 0, 0.6040353178977966, 0)
-            instances.TextLabel_2.Size = UDim2.new(0, 191, 0, 9)
-            instances.TextLabel_2.Name = "Description"
-
-            instances.TextButton_1.Parent = instances.Frame_1
-            instances.TextButton_1.Font = Enum.Font.GothamSemibold
-            instances.TextButton_1.Text = "X"
-            instances.TextButton_1.TextColor3 = Color3.new(1, 1, 1)
-            instances.TextButton_1.TextSize = 18
-            instances.TextButton_1.BackgroundColor3 = Color3.new(1, 1, 1)
-            instances.TextButton_1.BackgroundTransparency = 1
-            instances.TextButton_1.Position = UDim2.new(0.9070796370506287, 0, 0, 0)
-            instances.TextButton_1.Size = UDim2.new(0, 16, 0, 61)
-            instances.TextButton_1.Name = "Close"
-
-            instances.LocalScript_1.Parent = instances.TextButton_1
-
-            instances.LocalScript_2.Parent = instances.Frame_1
-
-            local DO_NOT_COPY_THIS_VARIABLE_001 = {}
-            local DO_NOT_COPY_THIS_VARIABLE_002 = require
-
-            local require = function(object)
-                local module = DO_NOT_COPY_THIS_VARIABLE_001[object]
-
-                if module then
-                    return DO_NOT_COPY_THIS_VARIABLE_001[object]()
-                end
-
-                return DO_NOT_COPY_THIS_VARIABLE_002(object)
-            end
-
-            function Code_LocalScript_1() --LocalScript
-                local script = instances.LocalScript_1
-
-                script.Parent.MouseButton1Down:Connect(
-                    function()
-                        script.Parent.Parent:TweenPosition(UDim2.new(50, 0, 0, 0), "InOut", "Sine", 7.2)
-                        wait(2)
-                        script.Parent.Parent.Parent:Destroy()
-                    end
-                )
-            end
-            coroutine.wrap(Code_LocalScript_1)()
-
-            function Code_LocalScript_2()
-                local script = instances.LocalScript_2
-                local newpos = UDim2.new(0.82, 0, 0.507, 0)
-
-                script.Parent:TweenPosition(newpos, "InOut", "Sine", 0.5)
-            end
-            coroutine.wrap(Code_LocalScript_2)()
-            wait(visibletime)
-            instances.Frame_1:TweenPosition(UDim2.new(50, 0, 0, 0), "InOut", "Sine", 7.2)
-            wait(2)
-            screenGui:Destroy()
-        end
-    )
+local function Image(ID, Button)
+	local NewImage = Instance.new(string.format("Image%s", Button and "Button" or "Label"));
+	NewImage.Image = ID;
+	NewImage.BackgroundTransparency = 1;
+	return NewImage;
 end
-return notif
+
+local function Round2px()
+	local NewImage = Image("http://www.roblox.com/asset/?id=5761488251");
+	NewImage.ScaleType = Enum.ScaleType.Slice;
+	NewImage.SliceCenter = Rect.new(2, 2, 298, 298);
+	NewImage.ImageColor3 = Color3.fromRGB(30, 30, 30);
+	return NewImage;
+end
+
+local function Shadow2px()
+	local NewImage = Image("http://www.roblox.com/asset/?id=5761498316");
+	NewImage.ScaleType = Enum.ScaleType.Slice;
+	NewImage.SliceCenter = Rect.new(17, 17, 283, 283);
+	NewImage.Size = UDim2.fromScale(1, 1) + UDim2.fromOffset(30, 30);
+	NewImage.Position = -UDim2.fromOffset(15, 15);
+	NewImage.ImageColor3 = Color3.fromRGB(30, 30, 30);
+	return NewImage;
+end
+
+local Padding = 10;
+local DescriptionPadding = 10;
+local InstructionObjects = {};
+local TweenTime = 1;
+local TweenStyle = Enum.EasingStyle.Sine;
+local TweenDirection = Enum.EasingDirection.Out;
+
+local LastTick = tick();
+
+local function CalculateBounds(TableOfObjects)
+	local TableOfObjects = typeof(TableOfObjects) == "table" and TableOfObjects or {};
+	local X, Y = 0, 0;
+	for _, Object in next, TableOfObjects do
+		X += Object.AbsoluteSize.X;
+		Y += Object.AbsoluteSize.Y;
+	end
+	return {X = X, Y = Y, x = X, y = Y};
+end
+
+local CachedObjects = {};
+
+local function Update()
+	local DeltaTime = tick() - LastTick;
+	local PreviousObjects = {};
+	for CurObj, Object in next, InstructionObjects do
+		local Label, Delta, Done = Object[1], Object[2], Object[3];
+		if (not Done) then
+			if (Delta < TweenTime) then
+				Object[2] = math.clamp(Delta + DeltaTime, 0, 1);
+				Delta = Object[2];
+			else
+				Object[3] = true;
+			end
+		end
+		local NewValue = TweenService:GetValue(Delta, TweenStyle, TweenDirection);
+		local CurrentPos = Label.Position;
+		local PreviousBounds = CalculateBounds(PreviousObjects);
+		local TargetPos = UDim2.new(0, 0, 0, PreviousBounds.Y + (Padding * #PreviousObjects));
+		Label.Position = CurrentPos:Lerp(TargetPos, NewValue);
+		table.insert(PreviousObjects, Label);
+	end
+	CachedObjects = PreviousObjects;
+	LastTick = tick();
+end
+
+RunService:BindToRenderStep("UpdateList", 0, Update);
+
+local TitleSettings = {
+	Font = Enum.Font.GothamSemibold;
+	Size = 14;
+}
+
+local DescriptionSettings = {
+	Font = Enum.Font.Gotham;
+	Size = 14;
+}
+
+local MaxWidth = (Container.AbsoluteSize.X - Padding - DescriptionPadding);
+
+local function Label(Text, Font, Size, Button)
+	local Label = Instance.new(string.format("Text%s", Button and "Button" or "Label"));
+	Label.Text = Text;
+	Label.Font = Font;
+	Label.TextSize = Size;
+	Label.BackgroundTransparency = 1;
+	Label.TextXAlignment = Enum.TextXAlignment.Left;
+	Label.RichText = true;
+	Label.TextColor3 = Color3.fromRGB(255, 255, 255);
+	return Label;
+end
+
+local function TitleLabel(Text)
+	return Label(Text, TitleSettings.Font, TitleSettings.Size);
+end
+
+local function DescriptionLabel(Text)
+	return Label(Text, DescriptionSettings.Font, DescriptionSettings.Size);
+end
+
+local PropertyTweenOut = {
+	Text = "TextTransparency",
+	Fram = "BackgroundTransparency",
+	Imag = "ImageTransparency"
+}
+
+local function FadeProperty(Object)
+	local Prop = PropertyTweenOut[string.sub(Object.ClassName, 1, 4)];
+	TweenService:Create(Object, TweenInfo.new(0.25, TweenStyle, TweenDirection), {
+		[Prop] = 1;
+	}):Play();
+end
+
+local function SearchTableFor(Table, For)
+	for _, v in next, Table do
+		if (v == For) then
+			return true;
+		end
+	end
+	return false;
+end
+
+local function FindIndexByDependency(Table, Dependency)
+	for Index, Object in next, Table do
+		if (typeof(Object) == "table") then
+			local Found = SearchTableFor(Object, Dependency);
+			if (Found) then
+				return Index;
+			end
+		else
+			if (Object == Dependency) then
+				return Index;
+			end
+		end
+	end
+end
+
+local function ResetObjects()
+	for _, Object in next, InstructionObjects do
+		Object[2] = 0;
+		Object[3] = false;
+	end
+end
+
+local function FadeOutAfter(Object, Seconds)
+	wait(Seconds);
+	FadeProperty(Object);
+	for _, SubObj in next, Object:GetDescendants() do
+		FadeProperty(SubObj);
+	end
+	wait(0.25);
+	table.remove(InstructionObjects, FindIndexByDependency(InstructionObjects, Object));
+	ResetObjects();
+end
+
+return {
+	Notify = function(Properties)
+		local Properties = typeof(Properties) == "table" and Properties or {};
+		local Title = Properties.Title;
+		local Description = Properties.Description;
+		local Duration = Properties.Duration or 5;
+		if (Title) or (Description) then -- Check that user has provided title and/or description
+			local Y = Title and 26 or 0;
+			if (Description) then
+				local TextSize = TextService:GetTextSize(Description, DescriptionSettings.Size, DescriptionSettings.Font, Vector2.new(0, 0));
+				for i = 1, math.ceil(TextSize.X / MaxWidth) do
+					Y += TextSize.Y;
+				end
+				Y += 8;
+			end
+			local NewLabel = Round2px();
+			NewLabel.Size = UDim2.new(1, 0, 0, Y);
+			NewLabel.Position = UDim2.new(-1, 20, 0, CalculateBounds(CachedObjects).Y + (Padding * #CachedObjects));
+			if (Title) then
+				local NewTitle = TitleLabel(Title);
+				NewTitle.Size = UDim2.new(1, -10, 0, 26);
+				NewTitle.Position = UDim2.fromOffset(10, 0);
+				NewTitle.Parent = NewLabel;
+			end
+			if (Description) then
+				local NewDescription = DescriptionLabel(Description);
+				NewDescription.TextWrapped = true;
+				NewDescription.Size = UDim2.fromScale(1, 1) + UDim2.fromOffset(-DescriptionPadding, Title and -26 or 0);
+				NewDescription.Position = UDim2.fromOffset(10, Title and 26 or 0);
+				NewDescription.TextYAlignment = Enum.TextYAlignment[Title and "Top" or "Center"];
+				NewDescription.Parent = NewLabel;
+			end
+			Shadow2px().Parent = NewLabel;
+			NewLabel.Parent = Container;
+			table.insert(InstructionObjects, {NewLabel, 0, false});
+			coroutine.wrap(FadeOutAfter)(NewLabel, Duration);
+		end
+	end,
+}
