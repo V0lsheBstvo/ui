@@ -1,4 +1,3 @@
-
 local PlaceName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 
     if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
@@ -691,7 +690,15 @@ function DarkraiX:Window(text,gamenme,logo,keybind)
 			end
 			return dropfunc
 		end
-
+		
+		function DarkraiX:Notify(message, duration)
+		    local notification = CreateNotification(message)
+		    TweenService:Create(notification, TweenConfig.Default, {Position = UDim2.new(0.5, 0, 0.9, 0)}):Play()
+		    delay(duration or 3, function()
+		        TweenService:Create(notification, TweenConfig.Default, {Position = UDim2.new(0.5, 0, 1.2, 0)}):Play()
+		    end)
+		end
+		
 		function main:Slider(text,min,max,set,callback)
 			local Slider = Instance.new("Frame")
 			local slidercorner = Instance.new("UICorner")
