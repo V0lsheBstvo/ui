@@ -1,12 +1,33 @@
+local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
+local Notify = AkaliNotif.Notify;
 
-local notif = loadstring(game:HttpGet("https://raw.githubusercontent.com/V0lsheBstvo/ui/refs/heads/main/notiflib.lua"))()
+wait(1);
 
-notif:Notification("Example Title","Example Description","GothamSemibold","Gotham",5) -- title: <string> description: <string> title font: <string> description font: <string> notification show time: <number>
+Notify({
+Description = "This description is super long and should cause an overlap in wrapping";
+Title = "Early | Wave 1";
+Duration = 5;
+});
 
---[[
-PARAM 1: title: <string>
-PARAM 2: description: <string>
-PARAM 3: title font: <string>
-PARAM 4: description font: <string>
-PARAM 5: notification appearance time: <number>
---]]
+wait(1);
+
+Notify({
+Description = "This description is super long and should cause an overlap in wrapping";
+Title = "Early | Wave 1";
+Duration = 10;
+});
+
+wait(1);
+
+Notify({
+Description = "This description is super long and should cause an overlap in wrapping";
+Title = "Early | Wave 1";
+Duration = 1;
+});
+
+wait(1);
+
+Notify({
+Description = "This description is super long and should cause an overlap in wrapping";
+Duration = 3;
+});
